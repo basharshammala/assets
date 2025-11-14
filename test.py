@@ -67,7 +67,7 @@ with col2 :
 
         /* نخلي العناوين نفسها فيها مسافة مريحة */
         button[data-baseweb="tab"] {
-            margin: 0 100px !important;       /* مسافة يمين ويسار بين التبويبات */
+            margin: 0 50px !important;       /* مسافة يمين ويسار بين التبويبات */
             font-weight: 600 !important;     /* خط عريض شوي */
             font-size: 30px !important;      /* حجم أكبر شوي لو بدك */
         }
