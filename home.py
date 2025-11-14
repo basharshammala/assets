@@ -55,7 +55,7 @@ def go_button(page) :
 col1, col2, col3 =  st.columns([1,4,1],)
 
 with col1 :
-    st.image(r"image/image3.png")
+    st.image(r"image/imag4.png")
 
 with col2 :
     st.markdown("""
