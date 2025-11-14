@@ -4,6 +4,7 @@ from streamlit_folium import st_folium
 import time
 
 st.set_page_config(layout='wide')
+
 st.markdown("""
 <style>
 body, [data-testid="stMarkdownContainer"] {
@@ -24,15 +25,6 @@ def about () :
         yield  i + " "
         time.sleep(0.02)
 
-# def position():
-#     address = """
-#     مصر - القاهره - العبور الحي الاول -  بجوار محطه الكهرباء
-#     """.strip()
-#     address_list =  address.split(" ")
-#     for i  in address.split(" ") :
-#         yield  i + " "
-#         time.sleep(0.02)
-
 @st.fragment
 def go_button(page) :
     st.markdown("""
@@ -51,12 +43,21 @@ def go_button(page) :
     if st.button('تصفح العقارات ', use_container_width=True):
         pass
 
+@st.cache_data
+def  basic_map ():
+    m = folium.Map(location=[30.25217, 31.47629], zoom_start=15)
+    folium.Marker(
+        location=[30.25217, 31.47629],
+        popup="شارع نعمان جمعه",
+        tooltip="عرض العنوان"
+    ).add_to(m)
+    return m
+
+
+
+# عرض النتائج
 
 col1, col2, col3 =  st.columns([1,4,1],)
-
-with col1 :
-    st.image(r"image/image2.png",use_container_width=True)
-
 with col2 :
     st.markdown("""
         <style>
@@ -74,44 +75,41 @@ with col2 :
         </style>
         """, unsafe_allow_html=True)
     tabs = st.tabs(['موقعنا', 'من نحن', 'خدماتنا'], default='من نحن')
+    with tabs[2]:
+        st.markdown("""
+        ### الخدمات التي نقدمها:
+        - ✅ البحث عن العقار المناسب (سكني – تجاري – استثماري).
+        - ✅ تدقيق قانوني كامل لكل عقار قبل الشراء، بخبرة محامي مصري.
+        - ✅ إتمام البيع والشراء رسميًا بخطوات موثقة بالكامل:
+          - في حالة الأراضي: 
+              - يتم عمل توكيل بيع وتوكيل إدارة في الشهر العقاري، ثم عقد بيع نهائي موثق.
+          - في حالة الشقق: 
+              - نفحص أوراق الملكية والتوكيل الأصلي بعدها نوقع عقد البيع النهائي وبنقوم بعمل صحة توقيع في المحكمة لضمان المشتري بالكامل.
+        - ✅ إصدار تراخيص البناء للأراضي الجديدة بالتعاون مع جهاز المدينة ، ونتابع كل ما يخص الرخص والرسومات الهندسية خطوة بخطوة.
+        - ✅ إرسال تقارير وفيديوهات تفصيلية للمشتري في غزة أثناء كل مرحلة.
+        - ✅ إدارة العقار بعد الشراء (تأجير، متابعة فواتير، صيانة...) مقابل نسبة بسيطة.
+        - ✅ فرص استثمارية حقيقية في مشاريع قائمة وجاهزة للعائد الشهري.
+        """)
+    with tabs[1]:
+            st.write_stream(about())
+    with tabs[0]:
+        address, map = st.columns(2)
+        with address:
+            st.write('* مصر ---  القاهره  ---  العبور ---  الحي الاول  --- بجوار الغاز')
+            st.write('* رقم التواصل الخاص بنا :: 1153148401  20+ ')
+            st.write('* كما ويمكن زيارتنا والتواصل معنا عبر صفحتنا على الفيس بوك ')
+            st.link_button('زور صفحتنا على فيسبوك', url='https://www.facebook.com/profile.php?id=61582944038227')
+        with map:
+            with st.spinner('جارٍ تحميل الخريطة...'):
+                st_folium(basic_map(), width="100%", height=250)
+
+
+
+with col1 :
+    st.image(r"image/image2.png",use_container_width=True)
 
 with col3 :
     go_button('page')
 
 
-with tabs[0] :
-    address, map = st.columns(2)
-    with address:
-        st.write('* مصر ---  القاهره  ---  العبور ---  الحي الاول  --- بجوار الغاز')
-        st.write('* رقم التواصل الخاص بنا :: 1153148401  20+ ')
-        st.write('* كما ويمكن زيارتنا والتواصل معنا عبر صفحتنا على الفيس بوك ')
-        st.link_button('زور صفحتنا على فيسبوك', url='https://www.facebook.com/profile.php?id=61582944038227')
-    with map :
-        m = folium.Map(location=[30.25217, 31.47629], zoom_start=15)
-        folium.Marker(
-                location=[30.25217, 31.47629],
-                popup="شارع نعمان جمعه",
-                tooltip="عرض العنوان"
-            ).add_to(m)
 
-        st_folium(m, width=500, height=250)
-
-with tabs[1]:
-    st.write_stream(about())
-
-
-with tabs[2] :
-    st.markdown("""
-    ### الخدمات التي نقدمها:
-    - ✅ البحث عن العقار المناسب (سكني – تجاري – استثماري).
-    - ✅ تدقيق قانوني كامل لكل عقار قبل الشراء، بخبرة محامي مصري.
-    - ✅ إتمام البيع والشراء رسميًا بخطوات موثقة بالكامل:
-      - في حالة الأراضي: 
-          - يتم عمل توكيل بيع وتوكيل إدارة في الشهر العقاري، ثم عقد بيع نهائي موثق.
-      - في حالة الشقق: 
-          - نفحص أوراق الملكية والتوكيل الأصلي بعدها نوقع عقد البيع النهائي وبنقوم بعمل صحة توقيع في المحكمة لضمان المشتري بالكامل.
-    - ✅ إصدار تراخيص البناء للأراضي الجديدة بالتعاون مع جهاز المدينة ، ونتابع كل ما يخص الرخص والرسومات الهندسية خطوة بخطوة.
-    - ✅ إرسال تقارير وفيديوهات تفصيلية للمشتري في غزة أثناء كل مرحلة.
-    - ✅ إدارة العقار بعد الشراء (تأجير، متابعة فواتير، صيانة...) مقابل نسبة بسيطة.
-    - ✅ فرص استثمارية حقيقية في مشاريع قائمة وجاهزة للعائد الشهري.
-    """)
