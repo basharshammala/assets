@@ -82,18 +82,20 @@ with col3 :
 with tabs[0] :
     address, map = st.columns(2)
     with address:
-        st.write('* مصر ---  القاهره  ---  العبور ---  الحي الاول  --- بجوار الغاز')
-        st.write('* رقم التواصل الخاص بنا :: 1153148401  20+ ')
+        st.write('* مصر ---  القاهره   ---  العبور ---  الحي الاول  --- جوار مصلحة الدمغه والموازين أمام مول ابو الدهب')
+        st.write('* رقم التواصل الخاص بنا ::2212747 109 20+ ')
+        st.write('* رقم التواصل الخاص بنا ::4363091 111 20+ ')
+        st.write('* رقم التواصل الخاص بنا للفريق الخاص بنا في فلسطين ::00972592541785 ')
         st.write('* كما ويمكن زيارتنا والتواصل معنا عبر صفحتنا على الفيس بوك ')
-        st.link_button('زور صفحتنا على فيسبوك', url='https://www.facebook.com/profile.php?id=61582944038227')
+        st.link_button('زور صفحتنا على فيسبوك', url='https://www.facebook.com/alfateh.bllah?mibextid=wwXIfr&rdid=UncDTAiFqTRqlkm1&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F17XFKhkE4W%2F%3Fmibextid%3DwwXIfr#')
     with map :
-        m = folium.Map(location=[30.25217, 31.47629], zoom_start=15)
+        m = folium.Map(location=[30.237785089563427, 31.46913541533995], zoom_start=15)
         folium.Marker(
-                location=[30.25217, 31.47629],
-                popup="شارع نعمان جمعه",
+                location=[30.237785089563427, 31.46913541533995],
+                popup="القاهره العبور الحي الاول ",
                 tooltip="عرض العنوان"
             ).add_to(m)
-
+        # 30.237785089563427, 31.46913541533995
         st_folium(m, width=500, height=250)
 
 with tabs[1]:
