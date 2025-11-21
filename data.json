@@ -1,0 +1,32 @@
+{
+    "1": {
+        "type": "استثمار",
+        "position": "التجمع",
+        "room_number": 3,
+        "price": 1000000
+    },
+    "2": {
+        "type": "استثمار",
+        "position": "التجمع",
+        "room_number": 3,
+        "price": 1000000
+    },
+    "3": {
+        "type": "ارض",
+        "position": "التجمع",
+        "room_number": 3,
+        "price": 1000000
+    },
+    "4": {
+        "type": "ارض",
+        "position": "التجمع",
+        "room_number": 3,
+        "price": 1000000
+    },
+    "5": {
+        "type": "شقه",
+        "position": "سته اكتوبر",
+        "room_number": 4,
+        "price": 1600000
+    }
+}

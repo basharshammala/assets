@@ -49,7 +49,7 @@ def go_button(page) :
     st.markdown('<div class="button-container">', unsafe_allow_html=True)
 
     if st.button('تصفح العقارات ', use_container_width=True):
-        st.switch_page("admin.py")
+        pass
 
 
 col1, col2, col3 =  st.columns([1,4,1],)
